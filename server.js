@@ -19,6 +19,7 @@ require('./config/database');
 require('./config/passport');
 
 const indexRoutes = require('./routes/index');
+const journalRouter = require("./routes/journals")
 
 
 // view engine setup
