@@ -18,8 +18,8 @@ require('./config/database');
 // configure Passport
 require('./config/passport');
 
-const indexRoutes = require('./routes/index');
-const journalRouter = require("./routes/journals")
+const indexRouter = require('./routes/index');
+const journalsRouter = require("./routes/journals")
 
 
 // view engine setup
@@ -33,6 +33,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 // mount the session middleware
+
+app.use("/", indexRouter);
+app.use("/journals", journalsRouter);
 app.use(session({
   secret: 'SEI Rocks!',
   resave: false,
