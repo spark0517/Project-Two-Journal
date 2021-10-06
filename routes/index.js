@@ -3,6 +3,10 @@ const passport = require('passport');
 
 // The root route renders our only view
 router.get('/', function(req, res) {
+  res.render("index", {
+    title: "Joural App",
+    user: req.user
+  })
   // Where do you want to go for the root route
   // in the student demo this was res.redirect('/students'), what do you want?
 });
@@ -17,7 +21,7 @@ router.get('/auth/google', passport.authenticate(
 router.get('/oauth2callback', passport.authenticate(
   'google',
   {
-    successRedirect : '/', // where do you want the client to go after you login 
+    successRedirect : 'journals', // where do you want the client to go after you login 
     failureRedirect : '/' // where do you want the client to go if login fails
   }
 ));

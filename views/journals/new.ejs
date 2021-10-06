@@ -5,13 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/style.css">
-    <title><%= title %></title>
+    <title>Journal App</title>
 </head>
 <body>
     <h1> New Journal Entry</h1>
-
-    <h2>Add Entry</h2>
     <form action="/journals" method="POST">
+        <input placeholder="Title" name="title" style="display: block;">
+        <textarea placeholder="Entry" name="entry" id="" cols="30" rows="10"></textarea>
+        <button type="submit">Confirm</button>
     </form>
 </body>
 </html>

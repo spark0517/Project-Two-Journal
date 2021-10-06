@@ -3,6 +3,8 @@ var router = express.Router();
 const journalsCtrl = require("../controllers/journals");
 
 router.get("/new", journalsCtrl.new);
-router.post("/journals", journalsCtrl.create)
+router.post("/", journalsCtrl.create);
+router.get("/", journalsCtrl.index);
+router.get("/:id", journalsCtrl.show);
 
 module.exports = router;

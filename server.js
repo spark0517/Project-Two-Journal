@@ -34,6 +34,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 // mount the session middleware
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
 app.use("/", indexRouter);
 app.use("/journals", journalsRouter);
 app.use(session({
@@ -42,8 +47,6 @@ app.use(session({
   saveUninitialized: true
 }));
 
-app.use(passport.initialize());
-app.use(passport.session());
 
 
 // Add this middleware BELOW passport middleware
@@ -52,10 +55,6 @@ app.use(function (req, res, next) {
   // single ejs view
   next();
 });
-
-// mount all routes with appropriate base paths
-app.use('/', indexRoutes);
-
 
 // invalid request, send 404 page
 app.use(function(req, res) {
