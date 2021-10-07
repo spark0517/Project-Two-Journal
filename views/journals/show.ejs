@@ -8,30 +8,41 @@
     <link rel="stylesheet" href="/stylesheets/style.css"/>
 </head>
 <body>
+    <form action="/journals/<%= journal._id%>/edit" method="POST">
+    <input type="text" name="title" value="<%=journal.title%>">
+    <input type="text" name="entry" value="<%=journal.entry%>">
+    <input type="submit">
+    </form>
     <h1><%=journal.title%></h1>
-        <%=journal.entry%>
+    <h2><%=journal.entry%></h2>
     <form action="/journals/<%= journal._id %>/notes" method="POST">
         <textarea placeholder="Notes" name="note" id="" cols="40" rows="3"></textarea>
         <button type="submit">Confirm</button>
-        <% if (journal.notes.length) { %>
-            <table>
-              <thead>
-                <tr>
-                  <th>Journal</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% journal.notes.forEach(function(e) { %>
-                  <tr>
-                    <td><%= e.notes %></td>
-                  </tr>
-                <% }); %>
-              </tbody>
-            </table>
-          <% } else { %>
-            <h5>Not Yet</h5>
-          
-            <% } %>
     </form>
+
+    <% if (journal.notes.length) { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Notes:</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% journal.notes.forEach(function(e) { %>
+            <tr>
+              <td><%= e.note %></td>
+              <td>
+                <form action="/journals/<%= journal._id%>/notes/<%=e._id%>?_method=DELETE" method="POST">
+                <input type="submit" value="delete" >
+                </form>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <h5>Not Yet</h5>
+    
+      <% } %>
 </body>
 </html>

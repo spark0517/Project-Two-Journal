@@ -4,8 +4,8 @@ module.exports = {
     new: newJournal,
     create, 
     index,
-    show
-    //edit
+    show,
+    edit
 
 }
 
@@ -26,6 +26,7 @@ function create(req, res) {
   }
 
 function index(req, res){
+    console.log("index user", req.user)
     Journal.find({}, function(err, journalDoc){
         console.log(journalDoc)
         res.render("journals/index", {
@@ -42,9 +43,10 @@ function show(req, res){
     })
 }
 
-// function edit(req, res){
-//     Journal.findById(req.params.id, function(err, journal) {
-//         if (!journal.user.equals(req.user._id)) return res.redirect("/journals");
-//         res.render("journals/edit", {journal});
-//     })
-// }
+function edit(req, res){
+    Journal.findByIdAndUpdate(req.params.id, req.body, function(err, journal) {
+        //if (!journal.user.equals(req.user._id)) return res.redirect("/journals");
+
+        res.redirect(`/journals/${req.params.id}`);
+    })
+}

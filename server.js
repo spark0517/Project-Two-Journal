@@ -34,20 +34,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 // mount the session middleware
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-
-
-app.use("/", indexRouter);
-app.use("/journals", journalsRouter);
-app.use("/", notesRouter);
 app.use(session({
   secret: 'SEI Rocks!',
   resave: false,
   saveUninitialized: true
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 
@@ -57,6 +51,11 @@ app.use(function (req, res, next) {
   // single ejs view
   next();
 });
+
+
+app.use("/", indexRouter);
+app.use("/journals", journalsRouter);
+app.use("/", notesRouter);
 
 // invalid request, send 404 page
 app.use(function(req, res) {

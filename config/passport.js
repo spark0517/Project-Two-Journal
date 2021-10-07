@@ -18,11 +18,11 @@ passport.use(
     function (accessToken, refreshToken, profile, cb) {
       // <- verify callback function, this function is called
       // whenever the user has been logged in using the oAuth
-      console.log(profile, "<----- Profile"); // <--- Is going to be the users that just logged information from google
+      //console.log(profile, "<----- Profile"); // <--- Is going to be the users that just logged information from google
 
       // Search you database and see if the user exists
       // User.findOne({'googleId': profile.id})
-      User.findOne({ googleId: profile.id }, function (err, userDoc) {
+      User.findOne({ googleID: profile.id }, function (err, userDoc) {
         if (err) return cb(err); // if there is an error use the callback to proceed to the next line in middleware
 
         if (userDoc) {
@@ -36,7 +36,7 @@ passport.use(
           const newUser = new User({
             name: profile.displayName,
             email: profile.emails[0].value,
-            googleId: profile.id,
+            googleID: profile.id,
           });
 
           newUser.save(function (err) {
@@ -76,7 +76,9 @@ passport.serializeUser(function(user, done) { // whats called after the verify c
 
 passport.deserializeUser(function(id, done) {// On every request when the user is logged in this function will be called
   // The id is coming from our session cookie, its the id from line 73 
+  console.log("testing")
   User.findById(id, function (err, userDoc) { // search our databases for the user, with the id from the session
+    console.log("userdoc", err, userDoc)
     done(err, userDoc); // when we call done here pass in the studentDoc,  This is where req.user = studentDoc
   });
 });
