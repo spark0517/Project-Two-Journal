@@ -19,7 +19,8 @@ require('./config/database');
 require('./config/passport');
 
 const indexRouter = require('./routes/index');
-const journalsRouter = require("./routes/journals")
+const journalsRouter = require("./routes/journals");
+const notesRouter = require("./routes/notes");
 
 
 // view engine setup
@@ -41,6 +42,7 @@ app.use(passport.session());
 
 app.use("/", indexRouter);
 app.use("/journals", journalsRouter);
+app.use("/", notesRouter);
 app.use(session({
   secret: 'SEI Rocks!',
   resave: false,

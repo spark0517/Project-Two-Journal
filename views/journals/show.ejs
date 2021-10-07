@@ -10,9 +10,28 @@
 <body>
     <h1><%=journal.title%></h1>
         <%=journal.entry%>
-    <form action="/journals/<%= journal._id %>" method="POST">
+    <form action="/journals/<%= journal._id %>/notes" method="POST">
         <textarea placeholder="Notes" name="note" id="" cols="40" rows="3"></textarea>
         <button type="submit">Confirm</button>
+        <% if (journal.notes.length) { %>
+            <table>
+              <thead>
+                <tr>
+                  <th>Journal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% journal.notes.forEach(function(e) { %>
+                  <tr>
+                    <td><%= e.notes %></td>
+                  </tr>
+                <% }); %>
+              </tbody>
+            </table>
+          <% } else { %>
+            <h5>Not Yet</h5>
+          
+            <% } %>
     </form>
 </body>
 </html>
