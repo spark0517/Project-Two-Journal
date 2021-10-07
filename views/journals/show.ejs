@@ -10,6 +10,9 @@
 <body>
     <h1><%=journal.title%></h1>
         <%=journal.entry%>
-
+    <form action="/journals/<%= journal._id %>" method="POST">
+        <textarea placeholder="Notes" name="note" id="" cols="40" rows="3"></textarea>
+        <button type="submit">Confirm</button>
+    </form>
 </body>
 </html>
