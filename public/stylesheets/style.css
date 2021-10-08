@@ -1,20 +1,83 @@
-.brand-logo {
-  margin-left: 15px;
+html{
+  min-height: 100%;
+  background-image: url("https://i.imgur.com/KC0k38A.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  color: white;
+  text-shadow: 0px 0px 3px #000, -1px -1px #000, 1px 1px #000;
 }
 
-.card .card-content .card-title {
-  margin-bottom: 10px;
+@media only screen and (max-width:760px) {
+  html {
+    background-image: url("https://i.imgur.com/KC0k38A.jpg");
+    
+  }
 }
 
-#search-row form {
-  padding-top: 20px;
+body {
+  font-family: "Birthstone", cursive;
+  margin: 0 auto;
+  padding: 0;
+  line-height: 1.6;
+  text-align: center;
+  
 }
 
-.student-name {
-  position: relative;
-  top: -5px;
+h1{
+  font-size: 4rem;
+  mix-blend-mode: difference;
+
 }
 
-.collection-item form {
-  margin-top: -5px;
+h2{
+  font-size: 3rem;
+
+}
+
+.logout{
+  font-size: 2rem;
+  text-align: center;
+  border: 2px solid black;
+  margin: 0;
+  padding: 5px;
+  bottom: 10px;
+  position: absolute;
+  
+}
+
+.greet{
+  font-size: 2rem ;
+  mix-blend-mode: difference;
+}
+
+a:link, a:visited{
+  display: center;
+  font-size: 1.5rem;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  color: white;
+  text-align: center;
+}
+
+a:active, a:hover, a{
+  background-color: lightcoral;
+}
+
+.notes{
+  text-align: center;
+}
+
+.mainp{
+  color: black;
+  background-color: lightgoldenrodyellow;
+}
+
+.entry{
+  color:black;
+  background-color: lightgoldenrodyellow;
 }

@@ -1,38 +1,25 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const User = require("../models/user");
-// this will be your User model in your project ^
 
-// this file is required in our server.js, right our db
-// configuring Passport!
-
-// Method to plug in an instaance of the Oauth (new GoogleStrategy)
 passport.use(
   new GoogleStrategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_SECRET, // <--- the info that we registerd with the provideder (google) to identify our app
+      clientSecret: process.env.GOOGLE_SECRET, 
       callbackURL: process.env.GOOGLE_CALLBACK,
     },
 
     function (accessToken, refreshToken, profile, cb) {
-      // <- verify callback function, this function is called
-      // whenever the user has been logged in using the oAuth
-      //console.log(profile, "<----- Profile"); // <--- Is going to be the users that just logged information from google
 
-      // Search you database and see if the user exists
-      // User.findOne({'googleId': profile.id})
       User.findOne({ googleID: profile.id }, function (err, userDoc) {
-        if (err) return cb(err); // if there is an error use the callback to proceed to the next line in middleware
+        if (err) return cb(err); 
 
         if (userDoc) {
-          // if the user exists
 
-          return cb(null, userDoc); // send the user doc to the next a middleware function in passport
-          // cb is verify callback that will pass  our information to passport.serializeUser at the bottom of the file
-          // cb(error, SuccessWhichIsYourUserDocument)
+          return cb(null, userDoc); 
+
         } else {
-          // Create the user in the db
           const newUser = new User({
             name: profile.displayName,
             email: profile.emails[0].value,
@@ -41,22 +28,9 @@ passport.use(
 
           newUser.save(function (err) {
             if (err) return cb(err);
-            return cb(null, newUser); // success, pass that student doc to the next place in the middleware chain,p
+            return cb(null, newUser); 
           });
 
-          // The above is equivelant to
-          // Student.create(
-          //   {
-          //     name: profile.displayName,
-          //     email: profile.emails[0].value, // THis object should match the keys and values in our schema, be sure to include the
-          //     // googleId
-          //     googleId: profile.id,
-          //   },
-          //   function (err, newStudentDoc) {
-          //     if (err) return cb(err);
-          //     return cb(null, newStudent);
-          //   }
-          // );
         }
       });
     }
@@ -64,21 +38,16 @@ passport.use(
 );
 
 
-// First argument is, is going to be the document that you passed to your cb(null, studentDoc)
-passport.serializeUser(function(user, done) { // whats called after the verify callback cb(null, mongooseDocument)
-  // student, (maybe in your app, you call user), but is the document from the db
+passport.serializeUser(function(user, done) { 
 
-  // second argument, done, is given to us by passport, and this is where passport adds the users id to the session cookie, (Connect.sid),
-  // that tracks who the user is that is making the request from the browser
-  done(null, user.id); // done(err, passTheDocumentIdOfTheUserHere)
-  // we just store the users id in the cookie
+  done(null, user.id);
+
 });
 
-passport.deserializeUser(function(id, done) {// On every request when the user is logged in this function will be called
-  // The id is coming from our session cookie, its the id from line 73 
+passport.deserializeUser(function(id, done) {
   console.log("testing")
-  User.findById(id, function (err, userDoc) { // search our databases for the user, with the id from the session
+  User.findById(id, function (err, userDoc) {
     console.log("userdoc", err, userDoc)
-    done(err, userDoc); // when we call done here pass in the studentDoc,  This is where req.user = studentDoc
+    done(err, userDoc);
   });
 });

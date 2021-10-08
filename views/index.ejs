@@ -8,10 +8,14 @@
     <title><%= title %></title>
 </head>
 <body>
-    Main Journal Page
+    <h1 class="mpg">Welcome to Your Journal</h1>
     <% if (user) { %>
-        <a href="/logout">Log Out</a>
-        <span>Hi <%= user.name %> </span>
+      <span class="greet">Hi <%= user.name %> </span>
+      <br>
+      <br>
+      <a href="/journals">My Journal</a>
+      <a class="logout" href="/logout">Log Out</a>
+
       <% } else { %>
         <a href="/auth/google"> Login with Google</a>
 

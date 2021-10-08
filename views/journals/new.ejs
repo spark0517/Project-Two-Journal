@@ -8,11 +8,14 @@
     <title>Journal App</title>
 </head>
 <body>
+    <a class="mainp" href="/journals">Journals</a>
     <h1> New Journal Entry</h1>
     <form action="/journals" method="POST">
-        <input placeholder="Title" name="title" style="display: block;">
-        <textarea placeholder="Entry" name="entry" id="" cols="30" rows="10"></textarea>
-        <button type="submit">Confirm</button>
+        <input placeholder="Title" name="title">
+        <br>
+        <textarea placeholder="Share your thoughts..." name="entry" id="" cols="60" rows="10"></textarea>
+        <br>
+        <button type="submit">Submit Entry</button>
     </form>
 </body>
 </html>

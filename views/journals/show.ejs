@@ -8,17 +8,20 @@
     <link rel="stylesheet" href="/stylesheets/style.css"/>
 </head>
 <body>
-    <form action="/journals/<%= journal._id%>/edit" method="POST">
-    <input type="text" name="title" value="<%=journal.title%>">
-    <input type="text" name="entry" value="<%=journal.entry%>">
-    <input type="submit">
-    </form>
+  <a class="mainp" href="/journals">Journals</a>
     <h1><%=journal.title%></h1>
     <h2><%=journal.entry%></h2>
-    <form action="/journals/<%= journal._id %>/notes" method="POST">
-        <textarea placeholder="Notes" name="note" id="" cols="40" rows="3"></textarea>
-        <button type="submit">Confirm</button>
+
+    <form action="/journals/<%= journal._id%>/edit" method="POST">
+      <input type="text" name="title" value="<%=journal.title%>">
+      <br>
+      <textarea placeholder="Change your thoughts" name="entry" cols="60" rows="5" value="<%=journal.entry%>"></textarea>
+      <br>
+      <input type="submit">
     </form>
+    <br>
+    <br>
+    <br>
 
     <% if (journal.notes.length) { %>
       <table>
@@ -28,7 +31,9 @@
           </tr>
         </thead>
         <tbody>
+          <div class="notes">
           <% journal.notes.forEach(function(e) { %>
+          </div>
             <tr>
               <td><%= e.note %></td>
               <td>
@@ -41,8 +46,13 @@
         </tbody>
       </table>
     <% } else { %>
-      <h5>Not Yet</h5>
+      <h4>No Notes Added Yet</h4>
     
       <% } %>
+    <form action="/journals/<%= journal._id %>/notes" method="POST">
+      <textarea placeholder="Notes" name="note" id="" cols="20" rows="2"></textarea>
+      <br>
+      <input type="submit">
+    </form>
 </body>
 </html>

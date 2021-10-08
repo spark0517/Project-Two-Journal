@@ -8,14 +8,17 @@
     <link rel="stylesheet" href="/stylesheets/style.css"/>
 </head>
 <body>
-    <h1>Main Journal Page</h1>
-    <a href="/logout">log out</a>
+    <h1><%= user.name %>'s Journal</h1>
+    <a class="logout" href="/logout">Log Out</a>
     <% journals.forEach(function(e){%>
         <a href="/journals/<%=e._id%>">
             <%= e.title %>
         </a>
 
     <%}) %> 
-    <button><a href="/journals/new">New Entry</a></button>
+    <br>
+    <br>
+    <br>
+    <a class="entry" href="/journals/new">New Entry</a>
 </body>
 </html>
