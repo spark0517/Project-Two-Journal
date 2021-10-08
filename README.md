@@ -5,8 +5,8 @@ App Title: Journal App
 - Able to edit title and entry
 
 Screenshots:
-- Home Page: <img src="https://i.imgur.com/3WutI6ab.png">
-- Wireframe: <img src="https://i.imgur.com/EOkTHgOb.jpg">
+- Home Page: <img src="https://i.imgur.com/3WutI6a.png">
+- Wireframe: <img src="https://i.imgur.com/EOkTHgO.jpg">
 
 Technologies Used: 
 - Javascript
