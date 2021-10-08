@@ -13,7 +13,8 @@ Technologies Used:
 - MongoDB
 - MongoDB Atlas
 - Google oAuth
-- EJS
+- Express
+- Node
 - CSS
 - Heroku
 
